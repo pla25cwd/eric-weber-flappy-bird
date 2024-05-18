@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwuh53do3r4po"]
+
+[ext_resource type="Script" path="res://ad.gd" id="1_whmlp"]
+[ext_resource type="Texture2D" uid="uid://1gnfufugq8fl" path="res://ad_images/horizontal/azm03.png" id="2_3m0d8"]
+
+[node name="ad" type="Control"]
+layout_mode = 3
+anchor_left = 0.15
+anchor_right = 0.85
+anchor_bottom = 0.13
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_whmlp")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_3m0d8")
+expand_mode = 1
+
+[node name="LinkButton" type="LinkButton" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+underline = 2
+uri = "https://www.sbgom.com"

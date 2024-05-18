@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://dwp3yxlgmmik7"]
+
+[ext_resource type="PackedScene" uid="uid://3dfqy8v48amc" path="res://eric.tscn" id="1_xq00r"]
+[ext_resource type="Script" path="res://towerHandler.gd" id="2_7ct3k"]
+[ext_resource type="PackedScene" uid="uid://b1uib48w0prlw" path="res://parallax_background.tscn" id="4_rf0u2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fco3m"]
+size = Vector2(450, 600)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tk41k"]
+size = Vector2(450, 800)
+
+[sub_resource type="LabelSettings" id="LabelSettings_abxxb"]
+font_size = 20
+
+[node name="main" type="Node2D"]
+
+[node name="jump_check" type="Area2D" parent="."]
+position = Vector2(225, 500)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="jump_check"]
+shape = SubResource("RectangleShape2D_fco3m")
+
+[node name="oob_check" type="Area2D" parent="."]
+position = Vector2(225, 1300)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="oob_check"]
+shape = SubResource("RectangleShape2D_tk41k")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("4_rf0u2")]
+
+[node name="towerHandler" type="Node2D" parent="."]
+script = ExtResource("2_7ct3k")
+
+[node name="Timer" type="Timer" parent="towerHandler"]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="eric" parent="." instance=ExtResource("1_xq00r")]
+position = Vector2(125, 400)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 99.0
+offset_top = 669.0
+offset_right = 322.0
+offset_bottom = 697.0
+text = "Press F to die instantly."
+label_settings = SubResource("LabelSettings_abxxb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="towerHandler/Timer" to="towerHandler" method="_on_timer_timeout"]

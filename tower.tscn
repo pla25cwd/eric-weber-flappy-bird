@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://d06ytgtswhr5w"]
+
+[ext_resource type="Script" path="res://tower.gd" id="1_04skt"]
+[ext_resource type="Texture2D" uid="uid://y3llr46e0ngg" path="res://tower.png" id="2_ius4r"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2vps5"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wghqi"]
+resource_local_to_scene = true
+size = Vector2(50, 285)
+
+[node name="tower" type="Node2D"]
+position = Vector2(-687, 0)
+script = ExtResource("1_04skt")
+
+[node name="upper" type="AnimatableBody2D" parent="."]
+position = Vector2(0, 50)
+sync_to_physics = false
+
+[node name="Sprite2D" type="Sprite2D" parent="upper"]
+texture = ExtResource("2_ius4r")
+flip_v = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="upper"]
+polygon = PackedVector2Array(-105, -187, 47, 190, 84, 190, 105, -191)
+
+[node name="Sprite2D2" type="Sprite2D" parent="upper"]
+position = Vector2(63, 190)
+texture = SubResource("PlaceholderTexture2D_2vps5")
+
+[node name="upper_posref" type="Marker2D" parent="upper"]
+position = Vector2(63, 190)
+
+[node name="lower" type="AnimatableBody2D" parent="."]
+position = Vector2(0, 800)
+sync_to_physics = false
+
+[node name="Sprite2D" type="Sprite2D" parent="lower"]
+texture = ExtResource("2_ius4r")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="lower"]
+polygon = PackedVector2Array(46, -191, 85, -190, 105, 189, -105, 187)
+
+[node name="lower_posref" type="Marker2D" parent="lower"]
+position = Vector2(63, -190)
+
+[node name="Sprite2D2" type="Sprite2D" parent="lower"]
+position = Vector2(63, -190)
+texture = SubResource("PlaceholderTexture2D_2vps5")
+
+[node name="point_check" type="Area2D" parent="."]
+position = Vector2(63, 423)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="point_check"]
+shape = SubResource("RectangleShape2D_wghqi")
+
+[connection signal="body_entered" from="point_check" to="." method="_on_point_check_body_entered"]

@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1uib48w0prlw"]
+
+[ext_resource type="Script" path="res://parallax_background.gd" id="1_1felp"]
+[ext_resource type="Texture2D" uid="uid://b5dnnfhh40wda" path="res://background/1.png" id="1_2j3o2"]
+[ext_resource type="Texture2D" uid="uid://gwn6h3hyixgg" path="res://background/bg.png" id="2_r2hnc"]
+[ext_resource type="Texture2D" uid="uid://da1wsjpb866ao" path="res://background/prigo.png" id="4_vmf2o"]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+scroll_ignore_camera_zoom = true
+script = ExtResource("1_1felp")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(3200, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer2"]
+texture = ExtResource("2_r2hnc")
+centered = false
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(1.2, 1)
+motion_mirroring = Vector2(800, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
+texture = ExtResource("1_2j3o2")
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(1.7, 1)
+motion_mirroring = Vector2(8000, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer3"]
+position = Vector2(278, 75)
+texture = ExtResource("4_vmf2o")
+centered = false
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = -1
+anchor_top = 0.15
+anchor_right = 0.4
+anchor_bottom = 0.2

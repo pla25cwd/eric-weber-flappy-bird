@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://3dfqy8v48amc"]
+
+[ext_resource type="Script" path="res://eric.gd" id="1_f0bkj"]
+[ext_resource type="Texture2D" uid="uid://cpevb68jnr0qw" path="res://eric.png" id="1_x8llb"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_tvqfp"]
+friction = 0.6
+bounce = 0.5
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d2tmw"]
+radius = 35.0
+height = 110.0
+
+[node name="eric" type="RigidBody2D" groups=["player"]]
+physics_material_override = SubResource("PhysicsMaterial_tvqfp")
+can_sleep = false
+max_contacts_reported = 10395
+contact_monitor = true
+linear_damp = 1.0
+script = ExtResource("1_f0bkj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_x8llb")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_d2tmw")
+
+[node name="jump_delay" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+autostart = true
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="death_timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
